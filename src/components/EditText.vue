@@ -1,6 +1,6 @@
 <template>
   <div class="edit-text">
-    <div contenteditable="true" @input="change">{{ value }}</div>
+    <div  :class="{ finished: finished }" contenteditable="true" @input="change">{{ value }}</div>
   </div>
 </template>
 
@@ -9,7 +9,8 @@ import _debounce from 'lodash/debounce.js'
 export default {
   name: 'editText',
   props: {
-    value: String
+    value: String,
+    finished: Boolean
   },
   model: {
     prop: 'value',
@@ -59,4 +60,6 @@ export default {
     outline none
     padding 2px
     font-size 14px
+  .finished
+    text-decoration:line-through
 </style>

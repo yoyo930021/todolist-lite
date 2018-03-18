@@ -3,7 +3,7 @@
     <div class="move">&#9776;</div>
     <checkbox class="checkbox" :value="item.finished" @input="changeFinish" />
     <div class="index">{{ index+1 + '.' }}</div>
-    <edit-text class="edittext" :value="item.text" @input="changeText" />
+    <edit-text class="edittext" :value="item.text" :finished="item.finished" @input="changeText" />
     <div class="right">
       <img @click="del(index)" src="../assets/ic_delete.svg" />
     </div>
@@ -88,12 +88,4 @@ export default {
       display block
 .finished
   opacity 0.4
-  &:after
-    content ''
-    position absolute
-    height 1px
-    background-color black
-    left 10px
-    right 10px
-    top 50%
 </style>
