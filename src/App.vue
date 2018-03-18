@@ -1,27 +1,44 @@
 <template>
   <div id="app">
-    <!-- <header>
-      <span>Vue.js PWA</span>
+    <header>
+      <nav class="container">
+        <h1>TodoList-Lite</h1>
+      </nav>
     </header>
-    <main>
-      <img src="./assets/logo.png" alt="Vue.js PWA">
-      <hello></hello>
-    </main> -->
+    <main class="container">
+      <div class="option"><checkbox style="width:32px;height:32px;" v-model="filter"></checkbox><div>隱藏完成選項</div></div>
+      <todo-list group="list"></todo-list>
+    </main>
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello'
+import TodoList from './components/TodoList'
+import Checkbox from './components/Checkbox.vue'
 
 export default {
   name: 'app',
   components: {
-    Hello
+    TodoList,
+    Checkbox
+  },
+  computed: {
+    filter: {
+      get () {
+        return this.$store.state.filter
+      },
+      set (value) {
+        this.$store.commit('filter', value)
+      }
+    }
   }
 }
 </script>
 
 <style>
+* {
+  box-sizing: border-box;
+}
 body {
   margin: 0;
 }
@@ -32,28 +49,37 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
-
-main {
-  text-align: center;
-  margin-top: 40px;
+.container {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 600px;
 }
 
 header {
-  margin: 0;
-  height: 56px;
-  padding: 0 16px 0 24px;
-  background-color: #35495E;
-  color: #ffffff;
+  height: 60px;
+  background-color: rgb(123,155,77);
+  box-shadow: 0px 2px 2px 2px #cccccc;
 }
 
-header span {
-  display: block;
-  position: relative;
-  font-size: 20px;
-  line-height: 1;
-  letter-spacing: .02em;
-  font-weight: 400;
-  box-sizing: border-box;
-  padding-top: 16px;
+header > nav > h1 {
+  padding: 14px;
+  margin: 0px;
+  color: white;
 }
+
+main {
+  padding: 12px;
+  overflow: hidden;
+  width: 100%;
+}
+
+main > div.option {
+  text-align: right;
+}
+
+main > div.option > * {
+  display: inline-block;
+  vertical-align: middle;
+}
+
 </style>

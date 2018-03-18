@@ -2,7 +2,9 @@
   <div class="todo-list">
     <draggable v-model="list" :options="{group: group, draggable: '.todo-item', handle: '.move',}">
       <transition-group name="slide" mode="out-in" tag="div">
-        <todo-item v-for="(element,index) in list" :key="'list-'+element.id" :item="element" :index="index" @changeText="changeText" @changeFinish="changeFinish" @del="del"></todo-item>
+        <template v-for="(element,index) in list">
+           <todo-item v-if="!filter||!element.finished"  :key="'list-'+element.id" :item="element" :index="index" @changeText="changeText" @changeFinish="changeFinish" @del="del"></todo-item>
+        </template>
         <add-item :key="'list-add'" :group="group"></add-item>
       </transition-group>
     </draggable>
@@ -26,33 +28,18 @@ export default {
   computed: {
     list: {
       get () {
-        console.log(this.$store.state.board[this.group])
         return this.$store.state.board[this.group]
       },
       set (value) {
         this.$store.commit('updateList', { group: this.group, value })
       }
+    },
+    filter: {
+      get () {
+        return this.$store.state.filter
+      }
     }
   },
-  // data () {
-  //   return {
-  //     list: [{
-  //       id: 1,
-  //       finished: false,
-  //       text: '測試測試測試1'
-  //     },
-  //     {
-  //       id: 2,
-  //       finished: false,
-  //       text: '測試測試測試2'
-  //     },
-  //     {
-  //       id: 3,
-  //       finished: true,
-  //       text: '測試測試測試3'
-  //     }]
-  //   }
-  // },
   watch: {
     list: function (value) {
       console.log(value)
