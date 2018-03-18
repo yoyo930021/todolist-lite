@@ -13,6 +13,7 @@
 - [x] Progressive Web App
 - [x] 拖移改變順序
 - [x] 簡單動畫
+- [x] Prerender
 
 Demo:  https://yoyo930021.github.io/todolist-lite
 

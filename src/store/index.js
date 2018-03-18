@@ -7,46 +7,10 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   plugins: [createPersistedState()],
   state: {
-    maxId: 8,
+    maxId: 1,
     filter: false,
     board: {
-      list: [
-        {
-          id: 1,
-          finished: false,
-          text: '測試1'
-        },
-        {
-          id: 2,
-          finished: false,
-          text: '測試測試2'
-        },
-        {
-          id: 3,
-          finished: true,
-          text: '測試測試測試3'
-        },
-        {
-          id: 4,
-          finished: false,
-          text: '測試測試測試3'
-        },
-        {
-          id: 5,
-          finished: true,
-          text: '測試測試測試測試4'
-        },
-        {
-          id: 6,
-          finished: false,
-          text: '測試測試測試測試測試5'
-        },
-        {
-          id: 7,
-          finished: false,
-          text: '測試測試測試測試測試測試6'
-        }
-      ]
+      list: []
     }
   },
 
