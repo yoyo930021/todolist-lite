@@ -17,7 +17,8 @@
     "stylus-loader": "^3.0.2",
     "vue": "^2.5.2",
     "vuedraggable": "^2.16.0",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "vuex-persistedstate": "^2.5.1"
   },
   "devDependencies": {
     "@storybook/vue": "^3.3.15",
