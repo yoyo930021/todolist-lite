@@ -1,5 +1,5 @@
 <template>
-  <div id="divider"></div>
+  <div class="divider"></div>
 </template>
 
 <script>
@@ -10,7 +10,7 @@ export default {
 
 
 <style lang="stylus" scoped>
-#divider
+.divider
   width 100%
   height 1px
   background-color #e0cccc

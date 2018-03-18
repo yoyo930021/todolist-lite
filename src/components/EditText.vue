@@ -1,10 +1,11 @@
 <template>
-  <div id="edit-text">
+  <div class="edit-text">
     <div contenteditable="true" @input="change">{{ value }}</div>
   </div>
 </template>
 
 <script>
+import _debounce from 'lodash/debounce.js'
 export default {
   name: 'editText',
   props: {
@@ -20,9 +21,9 @@ export default {
     }
   },
   methods: {
-    change (value) {
+    change: _debounce(function (value) {
       this.$emit('input', value.target.textContent)
-    }
+    }, 1000)
   }
 }
 </script>
@@ -30,7 +31,7 @@ export default {
 <style lang="stylus" scoped>
 *
   box-sizing border-box
-#edit-text
+.edit-text
   width 100%
   height 100%
   padding 6px

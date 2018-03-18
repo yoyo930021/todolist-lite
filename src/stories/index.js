@@ -2,10 +2,14 @@
 
 import { storiesOf } from '@storybook/vue'
 
+import store from '../store/index'
+
 import Checkbox from '../components/Checkbox.vue'
 import EditText from '../components/EditText.vue'
 import TodoItem from '../components/TodoItem.vue'
 import Divider from '../components/Divider.vue'
+import TodoList from '../components/TodoList.vue'
+import Board from '../components/Board.vue'
 
 storiesOf('Checkbox', module)
   .add('default', () => ({
@@ -36,5 +40,19 @@ storiesOf('Divider', module)
 storiesOf('TodoItem', module)
   .add('default', () => ({
     components: { TodoItem },
-    template: '<todo-item></todo-item>'
+    template: '<todo-item :item="{ finished: false, text: \'測試測試\' }" :index="0"></todo-item>'
+  }))
+
+storiesOf('TodoList', module)
+  .add('default', () => ({
+    components: { TodoList },
+    template: '<todo-list group="list"></todo-list>',
+    store: store
+  }))
+
+storiesOf('Board', module)
+  .add('default', () => ({
+    components: { Board },
+    template: '<board group="list"></board>',
+    store: store
   }))

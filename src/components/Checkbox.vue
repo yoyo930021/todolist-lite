@@ -1,5 +1,5 @@
 <template>
-  <div id="checkbox">
+  <div class="checkbox">
     <div @click="change(!value)">
       <div :class="{finish: value}"></div>
     </div>
@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import _debounce from 'lodash/debounce.js'
 export default {
   name: 'Checkbox',
   props: {
@@ -17,9 +18,9 @@ export default {
     event: 'input'
   },
   methods: {
-    change (value) {
+    change: _debounce(function (value) {
       this.$emit('input', value)
-    }
+    })
   }
 }
 </script>
@@ -27,7 +28,7 @@ export default {
 <style lang="stylus" scoped>
 *
   box-sizing border-box
-#checkbox
+.checkbox
   width 100%
   height 100%
   padding 8px
@@ -43,7 +44,7 @@ export default {
       border 3px solid white
     .finish
       background-color #9e9e9e
-    &:hover
+    &:hover,&:active
       div
         background-color #e0cccc
       .finish

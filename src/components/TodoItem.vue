@@ -1,9 +1,11 @@
 <template>
-  <div id="todo-item" :class="{ finished: finished }">
-    <checkbox class="checkbox" v-model="finished" />
-    <edit-text class="edittext" v-model="text" />
+  <div class="todo-item" :class="{ finished: item.finished }">
+    <div class="move">&#9776;</div>
+    <checkbox class="checkbox" :value="item.finished" @input="changeFinish" />
+    <div class="index">{{ index+1 + '.' }}</div>
+    <edit-text class="edittext" :value="item.text" @input="changeText" />
     <div class="right">
-      <img @click="del()" src="../assets/ic_delete.svg" />
+      <img @click="del(index)" src="../assets/ic_delete.svg" />
     </div>
   </div>
 </template>
@@ -13,18 +15,23 @@ import Checkbox from '../components/Checkbox.vue'
 import EditText from '../components/EditText.vue'
 export default {
   name: 'TodoItem',
+  props: {
+    item: Object,
+    index: Number
+  },
   components: {
     Checkbox: Checkbox,
     EditText: EditText
   },
-  data () {
-    return {
-      finished: false,
-      text: '測試測試測試測試'
-    }
-  },
   methods: {
-    del (id) {
+    del (index) {
+      this.$emit('del', index)
+    },
+    changeFinish (value) {
+      this.$emit('changeFinish', this.index, value)
+    },
+    changeText (value) {
+      this.$emit('changeText', this.index, value)
     }
   }
 }
@@ -33,12 +40,16 @@ export default {
 <style lang="stylus" scoped>
 *
   box-sizing border-box
-#todo-item
+.todo-item
   width 100%
   height 100%
   padding 6px
   font-size 0px
   position relative
+  border-radius 2px
+  background-color white
+  margin-bottom 3px
+  font-family 'Courier'
   >*
     display inline-block
     vertical-align middle
@@ -48,9 +59,15 @@ export default {
     height 100%
     display inline-block
     vertical-align middle
+  .move
+    cursor grab
+    color #d8d6d6
+    font-size 20px
   .checkbox
     width 36px
     height 36px
+  .index
+    font-size 16px
   .edittext
     width calc( 100% - 100px )
     height 36px
@@ -61,16 +78,21 @@ export default {
     top 12px
     bottom 12px
     cursor pointer
-  &:hover
+  &:hover,&:active
+    background-color rgb(237,239,240)
+    .right
+      display block
+@media all and (max-width: 600px)
+  .todo-item
     .right
       display block
 .finished
-  opacity 0.6
+  opacity 0.4
   &:after
     content ''
     position absolute
     height 1px
-    background-color #9e9e9e
+    background-color black
     left 10px
     right 10px
     top 50%
