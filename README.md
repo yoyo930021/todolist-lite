@@ -10,6 +10,7 @@
 - [x] 過濾已完成 / 未完成的 todos
 - [x] 清除已完成的 todos
 - [x] 加分:RWD, 測試
+- [x] Storybook
 - [x] Progressive Web App
 - [x] 拖移改變順序
 - [x] 簡單動畫
