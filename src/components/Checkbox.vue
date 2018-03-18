@@ -7,7 +7,6 @@
 </template>
 
 <script>
-import _debounce from 'lodash/debounce.js'
 export default {
   name: 'Checkbox',
   props: {
@@ -18,9 +17,9 @@ export default {
     event: 'input'
   },
   methods: {
-    change: _debounce(function (value) {
+    change: function (value) {
       this.$emit('input', value)
-    })
+    }
   }
 }
 </script>
